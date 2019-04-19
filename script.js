@@ -7,12 +7,12 @@ data.then(function(d){
           .data(list)
           .enter()
           .append("svg");
-drawRects(d)
+drawRects(d, svg)
 
 
 })
 
-var drawRects=function(data){
+var drawRects=function(data, svg){
 
 var width=1000
 var height=500
@@ -24,8 +24,7 @@ var margins={
   left:100
 }
 
-d3.select("svg")
-  .attr("width", width)
+svg.attr("width", width)
   .attr("height", height)
 
 var plotLand=svg.append("g")
