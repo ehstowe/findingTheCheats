@@ -8,43 +8,49 @@ data.then(function(d){
           .enter()
           .append("svg");
 drawRects(d)
-findCorrelation(d, 1, 2)
+
 
 })
 
-var drawRects=function(d,i){
+var drawRects=function(data){
 
+var width=1000
+var height=500
 
-
-
-var img=svg.append("img")
-      .attr("src","penguinPics/bookworm-penguin-300px.png")
-      .attr("height", "75")
-      .attr("width", "75")
-      .attr("x", "20")
-      .attr("y", "20");
-
-
-// d.forEach(function(d,i){
-// var svg=d3.select("svg");
-// var penguinPic = "penguinPics/" + d.picture;
-// var buttons=svg.append("button")
-// .attr("height", "75")
-// .attr("width", "75")
-// .attr("x", (75*i)+10)
-// .attr("y", 20)
-// .append("img")
-// .attr("src", penguinPic)
-// .attr("height", "75")
-// .attr("width", "75")
-// .attr("x", (75*i)+10)
-// .attr("y", 20);
-//
-//
-//
-// })
-
+var margins={
+  top:100,
+  bottom:20,
+  right:20,
+  left:100
 }
+
+d3.select("svg")
+  .attr("width", width)
+  .attr("height", height)
+
+var plotLand=svg.append("g")
+                .attr("width", width-margins.left-margins.right)
+                .attr("height", height-margins.top-margins.bottom)
+
+data.forEach(function(d,i){
+  data.forEach(function(s,p){
+    plotLand.append("rect")
+      .attr("width", 40)
+      .attr("height", 20)
+      .attr("x", 40*p)
+      .attr("y", 20*i)
+      .attr("fill", function(){
+      //  console.log(i, "i")
+      //  console.log(p, "p")
+        var corr=findCorrelation(data, i, p)
+        console.log(corr, "correlation")
+        if (corr<0){return "red"}
+        if (corr>0){return "blue"}
+      })
+  })
+})
+}
+
 
 var findCorrelation=function(data, penguin1, penguin2){
 
@@ -52,13 +58,13 @@ var penguin1Array=[]
 data[penguin1].quizes.forEach(function(d){
   penguin1Array.push(d.grade)
 })
-console.log(penguin1Array, "penguin1array")
+//console.log(penguin1Array, "penguin1array")
 
 var penguin2Array=[]
 data[penguin2].quizes.forEach(function(d){
   penguin2Array.push(d.grade)
 })
-console.log(penguin2Array, "penguin2array")
+//console.log(penguin2Array, "penguin2array")
 
 mx=d3.mean(penguin1Array)
 my=d3.mean(penguin2Array)
@@ -71,6 +77,8 @@ var top=penguin1Array.map(function(d,i){
 var topA=d3.sum(top)
 var bottom=(sx*sy)
 var r=(topA/bottom)*(1/36)
+
+return r
 
 
 console.log(r, "r")
