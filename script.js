@@ -34,7 +34,9 @@ svgLegend=d3.select("#Legend")
             .attr("height", 500)
 
 
-var colors=d3.scaleSequential(d3.interpolateRdBu);
+var colors=d3.scaleSequential(d3.interpolateReds)
+              .domain([0,1])
+
 
 
 
@@ -149,9 +151,8 @@ var top=penguin1Array.map(function(d,i){
 var topA=d3.sum(top)
 var bottom=(sx*sy)
 var r=(topA/bottom)*(1/22)
-
 return r
 
 
-console.log(r, "r")
+console.log(r2, "r")
 }
