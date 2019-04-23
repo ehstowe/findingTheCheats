@@ -11,10 +11,12 @@
     <svg id="Chart"></svg>
     <svg id="PenguinsVertical"></svg>
     <svg id="Legend"></svg>
-    <p>This chart shows the correlation between the quiz grades of every combinations of two students.<br>
+    <p id = "description">This chart shows the correlation between the quiz grades of every combinations of two students.<br>
     A white rectangle corresponds to zero or negative correlation while a dark red rectangele corresponds to
   perfect correlation.<br>Hover over a retangle to reveal the correlation value. </p>
 
+  <p id = "essay">Essay: After analyzing the correlations among the penguins, we have concluded that correlation is not an effective way to detect cheating among these penguins. Just because the penguins have similar grades, doesn’t necessarily mean they are cheating. This correlation doesn’t take into account other things that could explain why there is high correlation such as the class average also increasing. A better way to detect cheating would be to look for spikes in grades or random changes from someone doing poor to someone getting much better grades randomly. To try to detect cheating even more accurately, you may want find a way to look at the grades on a more individual scale and in a real world scenario, looking at specific data for their answers to certain questions may be the best way to detect this cheating. There is potential that the pharaoh and chef penguins are cheating because of the high correlation, but because of reasons we mentioned we cannot know this is true for sure. There is a possibility but more data analysis would have to be done to verify.
+</p>
     <style>
 
     #Penguins{
@@ -39,11 +41,18 @@
       left:1050px;
     }
 
-    p{
+    #description{
       position:fixed;
       top:760px;
       left:50px;
       font-size:30px;
+    }
+
+    #essay{
+      position: fixed;
+      top: 500;
+      left:1150px;
+      font-size:20px;
     }
 
 
